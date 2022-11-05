@@ -26,6 +26,11 @@ padding-bottom: ${({pb})=> pb &&pb};
 font-size: ${({fs})=>fs &&fs};
 font-weight: ${({fw})=>fw &&fw};
 color:${({color})=>color&&color};
+display: ${({d})=>d&&d};
+align-items: ${({align})=>align&&align};
+background: ${({bg})=>bg&&bg};
+width: ${({w})=>w&&w};
+height: ${({h})=>h&&h};
 `
  NavbarBox.Logo=styled.div`
  ${center}

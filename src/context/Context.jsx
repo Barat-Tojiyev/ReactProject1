@@ -28,11 +28,12 @@ export const Context=({children})=>{
       }
     },
     {
-      product:mock,
+      product:localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')):mock,
       newProduct:localStorage.getItem('newProduct') ? [...JSON.parse(localStorage.getItem('newProduct'))]:[],
       basket:false,
     })
-    localStorage.setItem('newProduct',JSON.stringify(state.newProduct))   
+    localStorage.setItem('newProduct',JSON.stringify(state.newProduct))  
+    localStorage.setItem('product',JSON.stringify(state.product))    
 
     return(
       <FlowerContext.Provider value={[state,dispatch]}>

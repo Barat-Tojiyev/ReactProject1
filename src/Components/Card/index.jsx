@@ -3,8 +3,9 @@ import { FlowerContext } from '../../context/Context'
 import { Korzinka } from '../Korzinka'
 import { Description } from '../Navbar/style'
 import {CardBox,MainBox,Image} from './style'
-
+import {AiOutlineHeart} from 'react-icons/ai'
 export const Card = () => {
+  
 
   const[state,dispatch]=useContext(FlowerContext)
   return (
@@ -18,11 +19,19 @@ export const Card = () => {
             state.product.map((value)=>{
               return(
                 <CardBox key={value.id}>
+                  {
+                    value.discount ?( <Description h='30px' w='70px' color='#FFF' d='flex' align='center' p='0 5px' bg='#46A358'>13% OFF</Description>): ' '
+                  }
+                  <AiOutlineHeart/>
                 <CardBox.Img>
                   <Image src={value.img} alt="" />
                 </CardBox.Img>
                 <Description>{value.name}</Description>
-                <Description>Price: ${value.price}</Description>
+                {
+                  value.discount ? ( <Description d='flex'>Price: ${value.price-(value.price*value.discount/100)}  <Description ml='10px' color='red'><del>${value.price}</del></Description></Description>):
+                  (<Description>Price: ${value.price}</Description>)
+                }
+               
                 {
                   value.addtocard ? (<CardBox.Button>Cansel</CardBox.Button>):
                   (<CardBox.Button onClick={()=>dispatch({type:'buy',payload:{productId:value.id}})}>Buy</CardBox.Button>)
@@ -39,3 +48,6 @@ export const Card = () => {
     </div>
   )
 }
+
+
+//   price*discount/100

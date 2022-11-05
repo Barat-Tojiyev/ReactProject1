@@ -7,10 +7,10 @@ import img6 from '../Components/assets/image/product6.svg'
 
 
 export const mock=[
-    {id:1,name:'Barberton Daisy',price:119.00, img:img1, addtocard:false,quantity:0 },
-    {id:2,name:'Angel Wing Begonia',price:199.00, img:img2, addtocard:false,quantity:0 },
-    {id:3,name:'African Violet',price:179.00, img:img3, addtocard:false,quantity:0 },
-    {id:4,name:'Beach Spider Lily',price:139.00, img:img4, addtocard:false,quantity:0 },
-    {id:5,name:'Blushing Bromeliad',price:159.00, img:img5 , addtocard:false,quantity:0},
-    {id:6,name:'Aluminum Plant',price:129.00, img:img6, addtocard:false,quantity:0}
+    {id:1,name:'Barberton Daisy',price:119.00, img:img1, addtocard:false,quantity:0,discount:13  ,like:false},
+    {id:2,name:'Angel Wing Begonia',price:199.00, img:img2, addtocard:false,quantity:0,discount:null  ,like:false},
+    {id:3,name:'African Violet',price:179.00, img:img3, addtocard:false,quantity:0,discount:13  ,like:false},
+    {id:4,name:'Beach Spider Lily',price:139.00, img:img4, addtocard:false,quantity:0,discount:null ,like:false },
+    {id:5,name:'Blushing Bromeliad',price:159.00, img:img5 , addtocard:false,quantity:0,discount:null ,like:false},
+    {id:6,name:'Aluminum Plant',price:129.00, img:img6, addtocard:false,quantity:0,discount:13 ,like:false}
 ]
