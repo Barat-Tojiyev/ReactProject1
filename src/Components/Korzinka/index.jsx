@@ -15,6 +15,7 @@ export const Korzinka = () => {
       <th>Name</th>
       <th>Price</th>
       <th>Count</th>
+      <th>Total</th>
       <th>Delete</th>
       
     </tr>
@@ -27,9 +28,15 @@ export const Korzinka = () => {
       <tr key={value.id}>
       <td><img src={value.img} height='40' alt="#" /></td>
       <td>{value.name}</td>
-      <td>{value.price}</td>
-      <td><AiFillMinusCircle/> 0 <AiFillPlusCircle/></td>
-      <td><AiFillDelete/></td>
+      <td>${(value.price-(value.price*value.discount/100)).toFixed()}</td>      
+      <td><AiFillMinusCircle onClick={()=>dispatch({type:'minus',payload:{id:value.id}})}  /> 
+      {value.quantity} 
+
+      <AiFillPlusCircle onClick={()=>dispatch({type:'plus',payload:{id:value.id}})}/>
+      </td>
+
+      <td>${((value.price-(value.price*value.discount/100))*value.quantity).toFixed()}</td>
+      <td><AiFillDelete onClick={()=>dispatch({type:'delete',payload:{id:value.id}})}/></td>
     </tr>
     )
   

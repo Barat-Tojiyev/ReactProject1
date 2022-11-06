@@ -3,7 +3,7 @@ import { FlowerContext } from '../../context/Context'
 import { Korzinka } from '../Korzinka'
 import { Description } from '../Navbar/style'
 import {CardBox,MainBox,Image} from './style'
-import {AiOutlineHeart} from 'react-icons/ai'
+import {AiOutlineHeart,AiFillHeart} from 'react-icons/ai'
 export const Card = () => {
   
 
@@ -19,10 +19,26 @@ export const Card = () => {
             state.product.map((value)=>{
               return(
                 <CardBox key={value.id}>
+                  
+                  <Description d='flex' justify='space-between' align='center'>
                   {
-                    value.discount ?( <Description h='30px' w='70px' color='#FFF' d='flex' align='center' p='0 5px' bg='#46A358'>13% OFF</Description>): ' '
+                    value.discount ?( <Description h='30px' w='70px' color='#FFF' d='flex' align='center' p='0 5px' bg='#46A358'>13% OFF</Description>): 'Asl narxda '
                   }
-                  <AiOutlineHeart/>
+
+                  {
+                    value.like ?   ( <Description cursor='pointer' onClick={()=>dispatch({type:'like',payload:{id:value.id}})}>
+                    <AiFillHeart/>
+                    
+                    </Description> ):(  <Description cursor='pointer' onClick={()=>dispatch({type:'like',payload:{id:value.id}})}>
+                    <AiOutlineHeart/>
+                    
+                    </Description>)
+                  }
+                
+                 
+                 
+                  </Description>
+                    
                 <CardBox.Img>
                   <Image src={value.img} alt="" />
                 </CardBox.Img>
@@ -33,7 +49,7 @@ export const Card = () => {
                 }
                
                 {
-                  value.addtocard ? (<CardBox.Button>Cansel</CardBox.Button>):
+                  value.addtocard ? (<CardBox.Button onClick={()=>dispatch({type:'delete',payload:{id:value.id}})}>Cansel</CardBox.Button>):
                   (<CardBox.Button onClick={()=>dispatch({type:'buy',payload:{productId:value.id}})}>Buy</CardBox.Button>)
                 }                
                  

@@ -15,9 +15,36 @@ export const Context=({children})=>{
          
           const add=[...state.newProduct,...buyProduct]
           let added =state.product.map((value)=>value.id ===action.payload.productId ? {...buyProduct[0]}:value)
-          console.log(added,'added');
+   
           return {...state,newProduct:add,product:added}  
+
+        case 'like' :
+          let like= state.product.map((value)=>value.id ===action.payload.id &&{...value,like:!value.like})
+          like= like.filter((value)=>value.id &&value.id)          
+          let newLike =state.product.map((value)=>value.id ===action.payload.id ? {...like[0]}:value)
           
+          return {...state,product:newLike }
+        
+          case 'minus':
+         let minus =state.newProduct.map((value)=>value.id ===action.payload.id && {...value,quantity:value.quantity-1})
+         minus=minus.filter((value)=> value.id &&value.id)
+         let newMinus =state.newProduct.map((value)=> value.id ===action.payload.id ? {...minus[0]}:value)
+
+          return {...state,newProduct:newMinus}
+
+          case 'plus':
+         let plus =state.newProduct.map((value)=>value.id ===action.payload.id && {...value,quantity:value.quantity+1})
+         plus=plus.filter((value)=> value.id &&value.id)
+         let newPlus =state.newProduct.map((value)=> value.id ===action.payload.id ? {...plus[0]}:value)
+
+          return {...state,newProduct:newPlus}
+
+        case 'delete':
+          let delet=state.newProduct.filter((value)=>value.id !== action.payload.id )
+          let delProduct=state.product.map((value)=>value.id  !==action.payload.id && {...value,addtocard:false,quantity:0})
+          delProduct=delProduct.filter((value)=>value.id&&value.id)
+          let newDel=state.product.map((value)=>value.id ===action.payload.id ? {...delProduct[0]}:value)         
+          return {...state,newProduct:delet ,product:newDel}
         case 'basket':
          
           return {...state,basket:!state.basket }
@@ -28,12 +55,11 @@ export const Context=({children})=>{
       }
     },
     {
-      product:localStorage.getItem('product') ? JSON.parse(localStorage.getItem('product')):mock,
-      newProduct:localStorage.getItem('newProduct') ? [...JSON.parse(localStorage.getItem('newProduct'))]:[],
+      product:mock,
+      newProduct:[],
       basket:false,
     })
-    localStorage.setItem('newProduct',JSON.stringify(state.newProduct))  
-    localStorage.setItem('product',JSON.stringify(state.product))    
+    
 
     return(
       <FlowerContext.Provider value={[state,dispatch]}>

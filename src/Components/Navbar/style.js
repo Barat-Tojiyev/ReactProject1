@@ -28,9 +28,11 @@ font-weight: ${({fw})=>fw &&fw};
 color:${({color})=>color&&color};
 display: ${({d})=>d&&d};
 align-items: ${({align})=>align&&align};
+justify-content: ${({justify})=>justify&&justify};
 background: ${({bg})=>bg&&bg};
 width: ${({w})=>w&&w};
 height: ${({h})=>h&&h};
+cursor: ${({cursor})=>cursor&&cursor}
 `
  NavbarBox.Logo=styled.div`
  ${center}
